@@ -6,7 +6,7 @@
 #    By: pcartau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 09:02:32 by pcartau           #+#    #+#              #
-#    Updated: 2018/01/30 15:36:58 by pcartau          ###   ########.fr        #
+#    Updated: 2018/02/15 14:46:10 by asandolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,13 @@ DONE = gcc -Wall -Wextra -Werror -o shell libft/ft_putmultistr.c \
 
 NAME = minishell
 
-SRC = srcs/ft_92.c srcs/ft_cd.c srcs/ft_do_work_bitch.c srcs/ft_echo.c \
-	srcs/ft_env.c srcs/ft_error.c srcs/ft_execute.c srcs/ft_exit.c \
-	srcs/ft_getenv.c srcs/ft_setenv.c srcs/ft_unsetenv.c srcs/main.c
+SRC = src/main.c src/process/ft_minishell.c src/fnc/ft_strdupplus.c src/buildin/ft_env.c \
+      src/buildin/ft_echo.c src/fnc/ft_cutspace.c src/fnc/ft_error.c \
+      src/fnc/ft_erroru.c src/fnc/fncenv2.c src/buildin/ft_setenv.c \
+      src/buildin/ft_unsetenv.c src/fnc/fncenv.c src/buildin/ft_cd.c \
+      src/process/ft_exec.c src/buildin/ft_exit.c src/fnc/cdfnc.c \
+      src/buildin/ft_cd2.c src/fnc/fncecho.c src/signal/sig_kill.c \
+      src/fnc/ft_prompt.c src/fnc/ft_starting.c
 
 
 OBJ = $(SRC:.c=.o)

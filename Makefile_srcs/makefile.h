@@ -13,7 +13,7 @@
 #ifndef MAKEFILE_H
 # define MAKEFILE_H
 
-# include "../includes/minishell.h"
+# include "../includes/21sh.h"
 
 int	gnl(const int fd, char **line);
 

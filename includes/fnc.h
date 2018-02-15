@@ -14,16 +14,13 @@
 # define FNC_H
 # include "stuct.h"
 
-void	minishell(char **env);
-char	**ft_strdupdup_plus(char **str, int p);
+void	ft_21sh(char **env);
 
 void	ft_env(char ***env, char *str);
-void	ft_pwd(char **env);
 
 int		ft_error(char *error, char *buf);
 void	ft_erroru(char *error, char *buf, char *usage);
 
-int		get_options(char *optenv, const char *argv, int argc);
 void	ft_echo(char ***env, char *str);
 void	ft_cutspace(char *str);
 int		ft_ispace(char c);
