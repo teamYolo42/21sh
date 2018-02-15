@@ -6,7 +6,7 @@
 #    By: pcartau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 09:02:32 by pcartau           #+#    #+#              #
-#    Updated: 2018/02/15 15:52:18 by asandolo         ###   ########.fr        #
+#    Updated: 2018/02/15 15:53:07 by asandolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ DONE = gcc -Wall -Wextra -Werror -o shell Makefile_srcs/ft_putmultistr.c \
 		libft/ft_putchar.c libft/ft_strlen.c Makefile_srcs/gnl.c \
 		Makefile_srcs/done.c
 
-NAME = minishell
+NAME = 21sh
 
 SRC = srcs/main.c srcs/process/ft_21sh.c srcs/fnc/ft_strdupplus.c srcs/buildin/ft_env.c \
       srcs/buildin/ft_echo.c srcs/fnc/ft_cutspace.c srcs/fnc/ft_error.c \
