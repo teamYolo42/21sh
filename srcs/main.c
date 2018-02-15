@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fncecho.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/07 19:41:55 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/12 17:49:05 by asandolo         ###   ########.fr       */
+/*   Created: 2018/02/15 14:49:11 by asandolo          #+#    #+#             */
+/*   Updated: 2018/02/15 14:51:39 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/21sh.h"
+#include "../includes/21sh.h"
 
-int	ft_env_len(char *str, int i)
+int main(int ac, char **av, char **envi)
 {
-	while (str[i] && !ft_ispace(str[i]))
-		i++;
-	return (i);
+    signal(2, ft_sig_kill);
+    ft_21sh(envi);
+    (void)ac;
+    (void)av;
+    return (0);
 }
