@@ -12,7 +12,7 @@
 
 #include "../../includes/21sh.h"
 
-static	int		ft_tablen(char **tab)
+int		ft_tablen(char **tab)
 {
 	int i;
 

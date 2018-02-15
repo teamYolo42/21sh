@@ -23,6 +23,7 @@
 # include <sys/stat.h>
 # include <signal.h>
 # include "stuct.h"
+# include "define.h"
 
 int		g_pid;
 char	**g_env;

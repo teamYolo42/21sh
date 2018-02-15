@@ -56,7 +56,7 @@ static int			parseenv_env(char ***env, char *value, char *name, int ov)
 	return (1);
 }
 
-static	int			checksyntax_env(const char *str)
+int			checksyntax_env(const char *str)
 {
 	int		i;
 

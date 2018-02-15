@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 11:09:22 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/12 17:44:13 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/15 18:33:16 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FNC_H
 # include "stuct.h"
 
+void    ft_puttab(char **tab);
 void	ft_21sh(char **env);
 
 void	ft_env(char ***env, char *str);
@@ -51,5 +52,9 @@ void	ft_starting(void);
 
 int		ft_setenv_env(char ***env, char *str);
 void	go(char ***env, char *buf, int m);
+
+int		get_options_env(char *optenv, char **argv, int argc);
+int		ft_tablen(char **tab);
+int		checksyntax_env(const char *str);
 
 #endif

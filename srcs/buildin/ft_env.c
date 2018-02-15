@@ -6,25 +6,56 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 13:15:07 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/12 17:47:26 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/15 19:04:35 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/21sh.h"
 
-static void			put_env(char **env)
+static void			put_env(const char *optenv, char **env, char *str, int m)
 {
-	int		i;
+    char **ss;
 
-	i = 0;
-	while (env[i])
-	{
-		ft_putendl(env[i]);
-		i++;
-	}
+    if (m == 0)
+    {
+        if (OPT_ENV_I)
+            ft_putstr("");
+        else
+            ft_puttab(env);
+    }
+    else
+    {
+        if (OPT_ENV_I)
+        {
+            ss = ft_strsplit(str, ' ');
+            ft_puttab(ss);
+            freer(ss);
+        }
+        else
+        {
+            ft_puttab(env);
+            ss = ft_strsplit(str, ' ');
+            ft_puttab(ss);
+            freer(ss);
+        }
+    }
 }
 
-static	void		ft_env2(char *str)
+static char    *ft_joinsplit(char **split, int i)
+{
+    char *ret;
+
+    ret = ft_strdup(split[i]);
+    while (split[i] && split[i + 1])
+    {
+        ret = ft_strjoincfree(ret, ' ');
+        ret = ft_strjoinfrees1(ret, split[i + 1]);
+        i++;
+    }
+    return (ret);
+}
+
+static	void		ft_env2(char *str, int m)
 {
 	char	**env;
 	char	**split;
@@ -32,39 +63,63 @@ static	void		ft_env2(char *str)
 	char	*tmp;
 
 	i = 0;
-	env = ft_strdupdup(g_env);
+    if (m == 0)
+	    env = ft_strdupdup(g_env);
+    else
+        env = NULL;
 	split = ft_strsplit(str, ' ');
 	while (split[i] && ft_setenv_env(&env, split[i]) == 0)
 		i++;
 	if (split[i])
 	{
-		tmp = ft_strdup(split[i]);
-		while (split[i] && split[i + 1])
-		{
-			tmp = ft_strjoincfree(tmp, ' ');
-			tmp = ft_strjoinfrees1(tmp, split[i + 1]);
-			i++;
-		}
+		tmp = ft_joinsplit(split, i);
 		go(&env, tmp, 1);
 		free(tmp);
 	}
-	freer(env);
+    if (env)
+	    freer(env);
 	freer(split);
 }
 
-void				ft_env(char ***env, char *str)
+int     ft_ckeckmode(char **split, int i)
 {
-	ft_strcut(str, 3);
-	if (!ft_ispace(str[0]))
-	{
-		if (ft_strcmp(str, "") == 0)
-			put_env(*env);
-		else
-		{
-			ft_error("Error: ", "command not found");
-			return ;
-		}
-	}
-	else
-		ft_env2(str);
+    while (split[i])
+    {
+        if (checksyntax_env(split[i]) != -1)
+            return (1);
+        i++;
+    }
+    return (0);
+}
+
+void    ft_env(char ***env, char *str)
+{
+    int     i;
+    char    **av;
+    char    optenv[1];
+    int     ac;
+    char    *s;
+
+    s = NULL;
+    av = ft_strsplit(str, ' ');
+    ac = (int) ft_countwords(str, ' ');
+    i = get_options_env(optenv, av, ac);
+    if (i == ac)
+        put_env(optenv, *env, s, 0);
+    else
+    {
+        ac = ft_ckeckmode(av, i);
+        s = ft_joinsplit(av, i);
+        if(ac == 1)
+        {
+            if (OPT_ENV_I)
+                ft_env2(s, 1);
+            else
+                ft_env2(s, 0);
+        }
+        else
+            put_env(optenv, *env, s, 1);
+        free(s);
+    }
+    freer(av);
 }

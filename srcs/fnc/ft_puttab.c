@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cw.c                                            :+:      :+:    :+:   */
+/*   ft_puttab.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 13:43:50 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/15 16:36:48 by asandolo         ###   ########.fr       */
+/*   Created: 2018/02/15 18:32:21 by asandolo          #+#    #+#             */
+/*   Updated: 2018/02/15 18:32:21 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "../../includes/21sh.h"
 
-size_t	ft_countwords(const char *str, char sep)
+void    ft_puttab(char **tab)
 {
-	size_t result;
-	size_t i;
+    int		i;
 
-	i = 0;
-	result = 0;
-	while (str[i] && str[i] == sep)
-		i++;
-	while (str[i])
-	{
-		while (str[i] && str[i] != sep)
-			i++;
-		result++;
-		while (str[i] && str[i] == sep)
-			i++;
+    i = 0;
+    while (tab[i])
+    {
+        ft_putendl(tab[i]);
+        i++;
     }
-	return (result);
 }
