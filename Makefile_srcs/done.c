@@ -14,7 +14,7 @@
 
 void	put(char *str)
 {
-	ft_putmultistr(_G, str, _RE);
+	ft_putmultistr(_G, str, _0);
 	ft_putchar('\n');
 }
 

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compile.c                                          :+:      :+:    :+:   */
+/*   ft_putmultistr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcartau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/22 14:34:23 by pcartau           #+#    #+#             */
-/*   Updated: 2018/02/15 16:00:05 by asandolo         ###   ########.fr       */
+/*   Created: 2017/12/11 11:36:59 by pcartau           #+#    #+#             */
+/*   Updated: 2018/02/15 15:57:22 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "makefile.h"
 
-void	put(char *str)
+void	ft_putmultistr(char *s1, char *s2, char *s3)
 {
-	ft_putmultistr(_Y, str, _0);
-	ft_putchar('\n');
-}
+	int i;
 
-int		main(void)
-{
-	int		fd;
-	char	*str;
-
-	str = NULL;
-	fd = open("Makefile_srcs/compiling", O_RDONLY);
-	while (gnl(fd, &str))
-		put(str);
-	return (0);
+	i = -1;
+	if (s1)
+		while (s1[++i])
+			write(1, &s1[i], 1);
+	i = -1;
+	if (s2)
+		while (s2[++i])
+			write(1, &s2[i], 1);
+	i = -1;
+	if (s3)
+		while (s3[++i])
+			write(1, &s3[i], 1);
 }
