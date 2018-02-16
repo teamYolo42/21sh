@@ -15,13 +15,17 @@
 static void			put_env(const char *optenv, char **env, char *str, int m)
 {
     char **ss;
-
+	
+	ft_putendl("test2");
     if (m == 0)
     {
         if (OPT_ENV_I)
             ft_putstr("");
         else
-            ft_puttab(env);
+		{
+			if (env)
+				ft_puttab(env);
+		}
     }
     else
     {
@@ -105,8 +109,12 @@ void    ft_env(char ***env, char *str)
     ac = (int) ft_countwords(str, ' ');
     i = get_options_env(optenv, av, ac);
     if (i == ac)
-        put_env(optenv, *env, s, 0);
-    else
+	{
+		ft_putendl("test");
+		if (env)
+			put_env(optenv, *env, s, 0);
+    }
+	else
     {
         ac = ft_ckeckmode(av, i);
         s = ft_joinsplit(av, i);
@@ -118,7 +126,8 @@ void    ft_env(char ***env, char *str)
                 ft_env2(s, 0);
         }
         else
-            put_env(optenv, *env, s, 1);
+			if (env)
+				 put_env(optenv, *env, s, 1);
         free(s);
     }
     freer(av);

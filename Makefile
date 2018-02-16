@@ -44,7 +44,7 @@ SRC = srcs/main.c srcs/process/ft_21sh.c srcs/fnc/ft_puttab.c srcs/buildin/ft_en
 
 
 OBJ = $(SRC:.c=.o)
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 CC = gcc
 
 .PHONY: clean fclean re re-bis
