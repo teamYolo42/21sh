@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puttab.c                                        :+:      :+:    :+:   */
+/*   ft_env2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/15 18:32:21 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/16 14:05:12 by asandolo         ###   ########.fr       */
+/*   Created: 2018/02/16 18:48:16 by asandolo          #+#    #+#             */
+/*   Updated: 2018/02/16 19:24:20 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/21sh.h"
+#include "../../../includes/21sh.h"
 
-void    ft_puttab(char **tab)
+void    ft_put_merge_env(char **envi, char **split)
 {
-    int		i;
+    int     i;
+    char    **env;
 
     i = 0;
-    while (tab[i])
-    {
-        ft_putendl(tab[i]);
+    env = ft_strdupdup(envi);
+    while (split[i] && ft_setenv_env(&env, split[i]) == 0)
         i++;
-    }
+    ft_puttab(env);
+    freer(env);
 }

@@ -12,7 +12,7 @@
 
 #include "../../includes/21sh.h"
 
-static	char	**addenv(char *name, char *value)
+char	**addenv(char *name, char *value)
 {
 	char	*str;
 

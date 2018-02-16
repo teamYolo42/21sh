@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puttab.c                                        :+:      :+:    :+:   */
+/*   ft_joinsplit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/15 18:32:21 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/16 14:05:12 by asandolo         ###   ########.fr       */
+/*   Created: 2018/02/16 18:37:53 by asandolo          #+#    #+#             */
+/*   Updated: 2018/02/16 18:43:20 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/21sh.h"
 
-void    ft_puttab(char **tab)
+char    *ft_joinsplit(char **split, int i)
 {
-    int		i;
+    char *ret;
 
-    i = 0;
-    while (tab[i])
+    ret = ft_strdup(split[i]);
+    while (split[i] && split[i + 1])
     {
-        ft_putendl(tab[i]);
+        ret = ft_strjoincfree(ret, ' ');
+        ret = ft_strjoinfrees1(ret, split[i + 1]);
         i++;
     }
+    return (ret);
 }

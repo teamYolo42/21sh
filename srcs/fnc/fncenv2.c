@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 19:15:25 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/12 17:50:46 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/16 17:05:43 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,21 @@ static int			parseenv_env(char ***env, char *value, char *name, int ov)
 
 	j = 0;
 	tmp = *env;
-	while (tmp[j])
-	{
-		if (ft_strcmpcuts1(tmp[j], name, '=') == 0)
-		{
-			if (ov != 0)
-				*env = fillenv_env(*env, name, value, j);
-			return (0);
-		}
-		j++;
-	}
+    if (tmp)
+    {
+        while (tmp[j])
+        {
+            if (ft_strcmpcuts1(tmp[j], name, '=') == 0)
+            {
+                if (ov != 0)
+                    *env = fillenv_env(*env, name, value, j);
+                return (0);
+            }
+            j++;
+        }
+    }
+    else
+        return (0);
 	return (1);
 }
 
@@ -88,7 +93,6 @@ int					ft_setenv_env(char ***env, char *str)
 	char	*name;
 	char	*value;
 
-	ft_putendl(str);
 	if ((in[0] = checksyntax_env(str)) == 1)
 		return (1);
 	if (in[0] == -1)
@@ -100,9 +104,14 @@ int					ft_setenv_env(char ***env, char *str)
 	if (in[0] != -1)
 		value = ft_strgetchartc(str, ' ');
 	if (parseenv_env(env, value, name, 1))
-		*env = addenv_env(*env, name, value);
+        *env = addenv_env(*env, name, value);
 	else
-		return (1);
+    {
+        free(name);
+        if (in[0] != -1)
+            free(value);
+        return (0);
+    }
 	free(name);
 	if (in[0] != -1)
 		free(value);

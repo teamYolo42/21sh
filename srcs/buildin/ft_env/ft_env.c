@@ -6,11 +6,11 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 13:15:07 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/15 19:04:35 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/16 18:54:53 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/21sh.h"
+#include "../../../includes/21sh.h"
 
 static void			put_env(const char *optenv, char **env, char *str, int m)
 {
@@ -21,10 +21,8 @@ static void			put_env(const char *optenv, char **env, char *str, int m)
         if (OPT_ENV_I)
             ft_putstr("");
         else
-		{
 			if (env)
 				ft_puttab(env);
-		}
     }
     else
     {
@@ -36,26 +34,11 @@ static void			put_env(const char *optenv, char **env, char *str, int m)
         }
         else
         {
-            ft_puttab(env);
             ss = ft_strsplit(str, ' ');
-            ft_puttab(ss);
+            ft_put_merge_env(env, ss);
             freer(ss);
         }
     }
-}
-
-static char    *ft_joinsplit(char **split, int i)
-{
-    char *ret;
-
-    ret = ft_strdup(split[i]);
-    while (split[i] && split[i + 1])
-    {
-        ret = ft_strjoincfree(ret, ' ');
-        ret = ft_strjoinfrees1(ret, split[i + 1]);
-        i++;
-    }
-    return (ret);
 }
 
 static	void		ft_env2(char *str, int m)
@@ -71,14 +54,11 @@ static	void		ft_env2(char *str, int m)
     else
         env = 0;
 	split = ft_strsplit(str, ' ');
-	ft_puttab(split);
 	while (split[i] && ft_setenv_env(&env, split[i]) == 0)
 		i++;
-	ft_putendl(split[i]);
 	if (split[i])
 	{
 		tmp = ft_joinsplit(split, i);
-		ft_putendl(tmp);
 		go(&g_env, &env, tmp, 1);
 		free(tmp);
 	}
@@ -87,7 +67,7 @@ static	void		ft_env2(char *str, int m)
 	freer(split);
 }
 
-int     ft_ckeckmode(char **split, int i)
+static int     ft_ckeckmode(char **split, int i)
 {
     while (split[i])
     {
@@ -98,40 +78,55 @@ int     ft_ckeckmode(char **split, int i)
     return (0);
 }
 
+
+static  void    ft_env_norm(char **av, char *optenv, char ***env, int i)
+{
+    char    *s;
+    int     c;
+
+    c = ft_ckeckmode(av, i);
+    s = ft_joinsplit(av, i);
+    if(c == 1)
+    {
+        if (OPT_ENV_I)
+            ft_env2(s, 1);
+        else
+            ft_env2(s, 0);
+    }
+    else
+    {
+        if (env)
+            put_env(optenv, *env, s, 1);
+    }
+    free(s);
+}
+
 void    ft_env(char ***env, char *str)
 {
     int     i;
     char    **av;
     char    optenv[1];
     int     ac;
-    char    *s;
 
-    s = NULL;
     av = ft_strsplit(str, ' ');
+    if (!ft_checkcmd(av[0], "env"))
+    {
+        freer(av);
+        return ;
+    }
     ac = (int) ft_countwords(str, ' ');
     i = get_options_env(optenv, av, ac);
+    if (i == -1)
+    {
+        freer(av);
+        return;
+    }
     if (i == ac)
 	{
 		if (env)
-			put_env(optenv, *env, s, 0);
+			put_env(optenv, *env, NULL, 0);
     }
 	else
-    {
-        ac = ft_ckeckmode(av, i);
-        s = ft_joinsplit(av, i);
-        if(ac == 1)
-        {
-            if (OPT_ENV_I)
-                ft_env2(s, 1);
-            else
-                ft_env2(s, 0);
-        }
-        else
-		{
-			if (env)
-				 put_env(optenv, *env, s, 1);
-        }
-		free(s);
-    }
+        ft_env_norm(av, optenv, env, i);
     freer(av);
 }

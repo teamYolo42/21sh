@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puttab.c                                        :+:      :+:    :+:   */
+/*   ft_ckeckcmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/15 18:32:21 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/16 14:05:12 by asandolo         ###   ########.fr       */
+/*   Created: 2018/02/16 18:10:21 by asandolo          #+#    #+#             */
+/*   Updated: 2018/02/16 18:10:21 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/21sh.h"
 
-void    ft_puttab(char **tab)
+int ft_checkcmd(char *cmd, char *str)
 {
-    int		i;
-
-    i = 0;
-    while (tab[i])
+    if (ft_strcmp(str, cmd) == 0)
+        return (1);
+    else
     {
-        ft_putendl(tab[i]);
-        i++;
+        ft_error("","command not found");
+        return (0);
     }
 }

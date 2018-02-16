@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 14:09:54 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/12 17:48:04 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:42:20 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static	int		ft_echo_env(char ***env, char *str, int i)
 	int		end;
 
 	tmp2 = "";
+    tmp = NULL;
 	i++;
 	end = ft_env_len(str, i);
 	while (str[i] && !ft_ispace(str[i]))
@@ -55,7 +56,8 @@ static	int		ft_echo_env(char ***env, char *str, int i)
 			free(tmp2);
 		i++;
 	}
-	tmp = ft_getenv(env, tmp2);
+    if (*env)
+	    tmp = ft_getenv(env, tmp2);
 	if (tmp)
 	{
 		ft_putstr(tmp);
