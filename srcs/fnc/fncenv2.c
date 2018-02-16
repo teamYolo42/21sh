@@ -88,6 +88,7 @@ int					ft_setenv_env(char ***env, char *str)
 	char	*name;
 	char	*value;
 
+	ft_putendl(str);
 	if ((in[0] = checksyntax_env(str)) == 1)
 		return (1);
 	if (in[0] == -1)
