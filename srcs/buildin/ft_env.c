@@ -16,7 +16,6 @@ static void			put_env(const char *optenv, char **env, char *str, int m)
 {
     char **ss;
 	
-	ft_putendl("test2");
     if (m == 0)
     {
         if (OPT_ENV_I)
@@ -72,11 +71,14 @@ static	void		ft_env2(char *str, int m)
     else
         env = 0;
 	split = ft_strsplit(str, ' ');
+	ft_puttab(split);
 	while (split[i] && ft_setenv_env(&env, split[i]) == 0)
 		i++;
+	ft_putendl(split[i]);
 	if (split[i])
 	{
 		tmp = ft_joinsplit(split, i);
+		ft_putendl(tmp);
 		go(&g_env, &env, tmp, 1);
 		free(tmp);
 	}
@@ -110,7 +112,6 @@ void    ft_env(char ***env, char *str)
     i = get_options_env(optenv, av, ac);
     if (i == ac)
 	{
-		ft_putendl("test");
 		if (env)
 			put_env(optenv, *env, s, 0);
     }
@@ -126,9 +127,11 @@ void    ft_env(char ***env, char *str)
                 ft_env2(s, 0);
         }
         else
+		{
 			if (env)
 				 put_env(optenv, *env, s, 1);
-        free(s);
+        }
+		free(s);
     }
     freer(av);
 }
