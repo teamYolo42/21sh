@@ -41,7 +41,7 @@ void	freess(char *s)
 		ft_error("Error: ", "command not found");
 }
 
-void	execute(char ***env, t_exe exec)
+void	execute(char ***cenv, t_exe exec)
 {
 	pid_t	pid;
 
@@ -49,11 +49,11 @@ void	execute(char ***env, t_exe exec)
 	g_pid = pid;
 	if (pid != 0)
 		return ;
-	if (execve(exec.builtin, exec.argv, *env) == -1 && !exec.e_path)
+	if (execve(exec.builtin, exec.argv, *cenv) == -1 && !exec.e_path)
 		ft_error("Error: ", "command not found");
 	if (exec.e_path)
 	{
-		while (exec.path && execve(exec.path, exec.argv, *env) == -1)
+		while (exec.path && execve(exec.path, exec.argv, *cenv) == -1)
 		{
 			free(exec.path);
 			exec.path = ft_strgetstatic(exec.e_path, &exec.i, ':');
@@ -68,7 +68,7 @@ void	execute(char ***env, t_exe exec)
 	exit(1);
 }
 
-int		ft_exec(char ***env, char *str)
+int		ft_exec(char ***env, char ***cenv, char *str)
 {
 	t_exe	exec;
 
@@ -86,7 +86,7 @@ int		ft_exec(char ***env, char *str)
 	}
 	ft_replacechar(str, '\t', ' ');
 	exec.argv = ft_strsplit(str, ' ');
-	execute(env, exec);
+	execute(cenv, exec);
 	clean(exec);
 	wait(NULL);
 	return (0);

@@ -30,7 +30,7 @@ void	ft_unsetenv(char *str, int m);
 int		find_env_var(char **env, char *var);
 void	ft_cd(char ***env, char *str);
 int		parseenv(char *value, char *key, int ov);
-int		ft_exec(char ***env, char *str);
+int		ft_exec(char ***env, char ***cenv, char *str);
 char	**fillenv(char *key, char *value, int j);
 char	*ft_getenv(char ***env, char *var);
 char	*ft_getenv_2(char **env, char *str);
@@ -51,7 +51,7 @@ void	ft_affprompt(void);
 void	ft_starting(void);
 
 int		ft_setenv_env(char ***env, char *str);
-void	go(char ***env, char *buf, int m);
+void	go(char ***env, char ***cenv,  char *buf, int m);
 
 int		get_options_env(char *optenv, char **argv, int argc);
 int		ft_tablen(char **tab);

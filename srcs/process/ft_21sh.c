@@ -25,25 +25,25 @@ void				freer(char **str)
 	free(str);
 }
 
-static	void		go2(char ***env, char *buf)
+static	void		go2(char ***env, char ***cenv,  char *buf)
 {
 	if (ft_strnstr(buf, "exit", 4))
 		ft_putstr("");
 	else if (ft_strnstr(buf, "echo", 5))
-		ft_echo(env, buf);
+		ft_echo(cenv, buf);
 	else if (ft_strnstr(buf, "cd", 2))
 		ft_putstr("");
 	else if (ft_strnstr(buf, "env", 3))
-		ft_env(env, buf);
+		ft_env(cenv, buf);
 	else if (ft_strnstr(buf, "setenv ", 7))
 		ft_putstr("");
 	else if (ft_strnstr(buf, "unsetenv ", 9))
 		ft_putstr("");
 	else if (ft_strcmp(buf, "") != 0)
-		ft_exec(env, buf);
+		ft_exec(env, cenv, buf);
 }
 
-void				go(char ***env, char *buf, int m)
+void				go(char ***env, char ***cenv, char *buf, int m)
 {
 	ft_cutspace(buf);
 	ft_replacechar(buf, '\t', ' ');
@@ -52,20 +52,20 @@ void				go(char ***env, char *buf, int m)
 		if (ft_strnstr(buf, "exit", 4))
 			ft_exit(buf);
 		else if (ft_strnstr(buf, "echo", 5))
-			ft_echo(env, buf);
+			ft_echo(cenv, buf);
 		else if (ft_strnstr(buf, "cd", 2))
-			ft_cd(env, buf);
+			ft_cd(cenv, buf);
 		else if (ft_strnstr(buf, "env", 3))
-			ft_env(env, buf);
+			ft_env(cenv, buf);
 		else if (ft_strnstr(buf, "setenv ", 7))
 			ft_setenv(buf, 0);
 		else if (ft_strnstr(buf, "unsetenv ", 9))
 			ft_unsetenv(buf, 0);
 		else if (ft_strcmp(buf, "") != 0)
-			ft_exec(env, buf);
+			ft_exec(env, cenv, buf);
 	}
 	else
-		go2(env, buf);
+		go2(env, cenv,  buf);
 	g_pid = 0;
 }
 
@@ -82,7 +82,7 @@ static	int			reader(void)
 	ft_delchar(buf, 10);
 	str = ft_strsplit(buf, ';');
 	while (str[++i])
-		go(&g_env, str[i], 0);
+		go(&g_env, &g_env,  str[i], 0);
 	freer(str);
 	free(buf);
 	return (1);

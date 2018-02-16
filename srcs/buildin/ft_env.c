@@ -66,14 +66,14 @@ static	void		ft_env2(char *str, int m)
     if (m == 0)
 	    env = ft_strdupdup(g_env);
     else
-        env = NULL;
+        env = 0;
 	split = ft_strsplit(str, ' ');
 	while (split[i] && ft_setenv_env(&env, split[i]) == 0)
 		i++;
 	if (split[i])
 	{
 		tmp = ft_joinsplit(split, i);
-		go(&env, tmp, 1);
+		go(&g_env, &env, tmp, 1);
 		free(tmp);
 	}
     if (env)
