@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 13:40:29 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/20 18:24:04 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/20 18:40:37 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static  void    ft_setenv_norm(char **av, const char *optsetenv, int i)
             if (parseenv(value, name, 0))
                 g_env = addenv(name, value);
         }
+        free(name);
 
     }
     else
