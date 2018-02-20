@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puttab.c                                        :+:      :+:    :+:   */
+/*   check_cot.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/15 18:32:21 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/16 14:05:12 by asandolo         ###   ########.fr       */
+/*   Created: 2018/02/20 13:17:27 by asandolo          #+#    #+#             */
+/*   Updated: 2018/02/20 13:17:58 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/21sh.h"
 
-void    ft_puttab(char **tab)
+int		check_cot(const char *str)
 {
-    int		i;
+    int i;
+    int ck;
 
     i = 0;
-    while (tab[i])
+    ck = 0;
+    while (str[i])
     {
-        ft_putendl(tab[i]);
+        if (str[i] == '"' || str[i] == 39)
+            ck++;
         i++;
     }
+    return (((ck % 2) == 0) ? 0 : 1);
 }

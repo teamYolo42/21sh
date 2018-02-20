@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 18:25:28 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/16 19:04:48 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/20 12:10:23 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_affprompt(void)
 	pwd = ft_getenv(&g_env, "PWD");
 	if (!pwd)
 		pwd = "-";
-	ft_putcolormultistr(_MI, pwd, _G, " $>");
+    ft_putcolormultistr(_MI, "[", pwd, "]");
+	ft_putcolormultistr(_G, " $>", "" , "");
 	if (pwd)
 		free(pwd);
 }

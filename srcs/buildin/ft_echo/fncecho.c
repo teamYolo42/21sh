@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/21sh.h"
+#include "../../../includes/21sh.h"
 
 int	ft_env_len(char *str, int i)
 {

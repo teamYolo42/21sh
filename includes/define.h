@@ -14,5 +14,7 @@
 #define DEFINE_H
 
 # define OPT_ENV_I (optenv[0])
+# define OPT_SETENV_1 (optsetenv[0])
+
 
 #endif

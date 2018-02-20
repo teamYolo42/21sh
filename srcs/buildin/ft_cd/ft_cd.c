@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/21sh.h"
+#include "../../../includes/21sh.h"
 
 static void		ft_cd2(char ***env, char *str)
 {
@@ -29,7 +29,7 @@ static void		ft_cd2(char ***env, char *str)
 	{
 		v.m = (str[0] == '/') ? 1 : 0;
 		v.split = ft_strsplit(str, '/');
-		if (testcd(v.split, v.m, getcwd(v.buf, PATH_MAX)))
+		if (testcd(v.split, v.m, getcwd(v.buf, 2048)))
 			ft_cd_norm(env, v.split, v.m);
 		freer(v.split);
 	}

@@ -6,11 +6,11 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 14:09:54 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/16 14:42:20 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/20 13:19:09 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/21sh.h"
+#include "../../../includes/21sh.h"
 
 static int		echo_par(char *str, int i, char c)
 {
@@ -21,22 +21,6 @@ static int		echo_par(char *str, int i, char c)
 		i++;
 	}
 	return (i);
-}
-
-static int		check_cot(const char *str)
-{
-	int i;
-	int ck;
-
-	i = 0;
-	ck = 0;
-	while (str[i])
-	{
-		if (str[i] == '"' || str[i] == 39)
-			ck++;
-		i++;
-	}
-	return (((ck % 2) == 0) ? 0 : 1);
 }
 
 static	int		ft_echo_env(char ***env, char *str, int i)

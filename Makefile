@@ -6,7 +6,7 @@
 #    By: pcartau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 09:02:32 by pcartau           #+#    #+#              #
-#    Updated: 2018/02/16 18:40:03 by asandolo         ###   ########.fr        #
+#    Updated: 2018/02/20 18:12:55 by asandolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,14 +34,15 @@ DONE = gcc -Wall -Wextra -Werror -o shell Makefile_srcs/ft_putmultistr.c \
 
 NAME = 21sh
 
-SRC = srcs/main.c srcs/process/ft_21sh.c srcs/fnc/ft_puttab.c srcs/buildin/ft_env/ft_env.c \
-      srcs/buildin/ft_echo.c srcs/fnc/ft_cutspace.c srcs/fnc/ft_error.c \
-      srcs/fnc/ft_erroru.c srcs/fnc/fncenv2.c srcs/buildin/ft_setenv.c \
-      srcs/buildin/ft_unsetenv.c srcs/fnc/fncenv.c srcs/buildin/ft_cd.c \
-      srcs/process/ft_exec.c srcs/buildin/ft_exit.c srcs/fnc/cdfnc.c \
-      srcs/buildin/ft_cd2.c srcs/fnc/fncecho.c srcs/signal/sig_kill.c \
-      srcs/fnc/ft_prompt.c srcs/fnc/ft_starting.c srcs/fnc/opts/envopts.c \
-      srcs/fnc/ft_checkcmd.c srcs/fnc/ft_joinsplit.c srcs/buildin/ft_env/ft_env2.c
+SRC = srcs/main.c srcs/process/ft_21sh.c srcs/buildin/ft_env/ft_env.c \
+      srcs/buildin/ft_echo/ft_echo.c srcs/fnc/ft_error.c \
+      srcs/fnc/ft_erroru.c srcs/buildin/ft_env/fncenv2.c srcs/buildin/ft_setenv/ft_setenv.c \
+      srcs/buildin/ft_unsetenv.c srcs/buildin/ft_env/fncenv.c srcs/buildin/ft_cd/ft_cd.c \
+      srcs/process/ft_exec.c srcs/buildin/ft_exit.c srcs/buildin/ft_cd/fnccd.c \
+      srcs/buildin/ft_cd/ft_cd2.c srcs/buildin/ft_echo/fncecho.c srcs/signal/sig_kill.c \
+      srcs/fnc/ft_prompt.c srcs/fnc/ft_starting.c srcs/buildin/ft_env/opts/envopts.c \
+      srcs/fnc/ft_checkcmd.c srcs/buildin/ft_env/ft_env2.c srcs/fnc/check_cot.c \
+      srcs/buildin/ft_setenv/opts/setenvopts.c srcs/buildin/ft_setenv/ft_setenv2.c
 
 
 OBJ = $(SRC:.c=.o)

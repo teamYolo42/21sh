@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 11:09:22 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/16 18:38:20 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/20 13:19:09 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FNC_H
 # include "stuct.h"
 
-void    ft_puttab(char **tab);
 void	ft_21sh(char **env);
 
 void	ft_env(char ***env, char *str);
@@ -23,8 +22,7 @@ int		ft_error(char *error, char *buf);
 void	ft_erroru(char *error, char *buf, char *usage);
 
 void	ft_echo(char ***env, char *str);
-void	ft_cutspace(char *str);
-int		ft_ispace(char c);
+
 void	ft_setenv(char *str, int m);
 void	ft_unsetenv(char *str, int m);
 int		find_env_var(char **env, char *var);
@@ -58,6 +56,9 @@ int		get_options_env(char *optenv, char **argv, int argc);
 int		ft_tablen(char **tab);
 int		checksyntax_env(const char *str);
 int     ft_checkcmd(char *cmd, char *str);
-char    *ft_joinsplit(char **split, int i);
 void    ft_put_merge_env(char **env, char **split);
+int		check_cot(const char *str);
+
+int		get_options_setenv(char *optsetenv, char **argv, int argc);
+
 #endif

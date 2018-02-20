@@ -6,7 +6,7 @@
 #    By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/22 17:55:04 by asandolo          #+#    #+#              #
-#    Updated: 2018/02/12 18:21:34 by asandolo         ###   ########.fr        #
+#    Updated: 2018/02/20 11:39:45 by asandolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRC = ft_atoi.c ft_bzero.c ft_memcpy.c ft_memset.c \
 	  ft_realloc.c ft_reallocd.c ft_cut.c ft_strcut.c ft_cw.c \
 	  ft_putcolormultistr_err.c ft_strgetchartc.c ft_strcmpcuts1.c \
 	  epur_str.c ft_strgetstatic.c ft_replacechar.c ft_strdupdup.c \
-	  ft_strjoinc.c
+	  ft_strjoinc.c ft_puttab.c ft_cutspace.c ft_joinsplit.c
 
 OBJ = $(SRC:.c=.o)
 

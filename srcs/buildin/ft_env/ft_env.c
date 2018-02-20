@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 13:15:07 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/16 18:54:53 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/20 15:51:21 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static	void		ft_env2(char *str, int m)
 		i++;
 	if (split[i])
 	{
-		tmp = ft_joinsplit(split, i);
+		tmp = ft_joinsplitc(split, i, ' ');
 		go(&g_env, &env, tmp, 1);
 		free(tmp);
 	}
@@ -85,7 +85,7 @@ static  void    ft_env_norm(char **av, char *optenv, char ***env, int i)
     int     c;
 
     c = ft_ckeckmode(av, i);
-    s = ft_joinsplit(av, i);
+    s = ft_joinsplitc(av, i, ' ');
     if(c == 1)
     {
         if (OPT_ENV_I)
@@ -119,7 +119,7 @@ void    ft_env(char ***env, char *str)
     if (i == -1)
     {
         freer(av);
-        return;
+        return ;
     }
     if (i == ac)
 	{

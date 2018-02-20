@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:27:54 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/09 10:52:29 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/20 15:49:15 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,10 @@ void				ft_replacechar(char *str, char c1, char c2);
 char				**ft_strdupdup(char **str);
 char				*ft_strjoinc(char *s, char c);
 char				*ft_strjoincfree(char *s, char c);
+void                ft_puttab(char **tab);
+void                ft_cutspace(char *str);
+int                 ft_ispace(char c);
+char                *ft_joinsplitc(char **split, int i, char c);
+char                *ft_joinsplit(char **split, int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 18:42:40 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/16 16:32:38 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/20 12:03:01 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static  void    ft_start(void)
 {
     char *pwd;
     char *oldpwd;
-    char buf[PATH_MAX];
+    char buf[2048];
 
     pwd = ft_getenv(&g_env, "PWD");
     oldpwd = ft_getenv(&g_env, "OLDPWD");
     if (!pwd)
-        g_env = addenv("PWD", getcwd(buf, PATH_MAX));
+        g_env = addenv("PWD", getcwd(buf, 2048));
     if (!oldpwd)
-        g_env = addenv("OLDPWD", getcwd(buf, PATH_MAX));
+        g_env = addenv("OLDPWD", getcwd(buf, 2048));
     if (pwd)
         free(pwd);
     if (oldpwd)
@@ -36,11 +36,11 @@ void	ft_starting(void)
     char    *shell;
     char    *c;
 	int		ilvl;
-    char    buf[PATH_MAX];
+    char    buf[2048];
 
     ft_start();
 	lvl = ft_getenv(&g_env, "SHLVL");
-    shell = getcwd(buf, PATH_MAX);
+    shell = getcwd(buf, 2048);
     c = ft_getenv(&g_env, "SHELL");
 	if (lvl)
 	{

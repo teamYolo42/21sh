@@ -1,67 +1,72 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setenv.c                                        :+:      :+:    :+:   */
+/*   fncenv2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 13:40:29 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/12 17:48:40 by asandolo         ###   ########.fr       */
+/*   Created: 2018/02/09 19:15:25 by asandolo          #+#    #+#             */
+/*   Updated: 2018/02/16 17:05:43 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/21sh.h"
+#include "../../../includes/21sh.h"
 
-char	**addenv(char *name, char *value)
+static	char		**addenv_env(char **env, char *name, char *value)
 {
 	char	*str;
 
 	str = ft_strdup(name);
 	str = ft_strjoinfrees1(str, "=");
 	str = ft_strjoinfrees1(str, value);
-	g_env = ft_reallocd(g_env, 1, str);
+	env = ft_reallocd(env, 1, str);
 	free(str);
-	return (g_env);
+	return (env);
 }
 
-char			**fillenv(char *name, char *value, int j)
+static char			**fillenv_env(char **env, char *name, char *value, int j)
 {
 	char	*str;
 
 	str = ft_strdup(name);
 	str = ft_strjoinfrees1(str, "=");
 	str = ft_strjoinfrees1(str, value);
-	ft_bzero(g_env[j], ft_strlen(g_env[j]));
-	g_env[j] = ft_strjoinfree(g_env[j], str);
-	return (g_env);
+	ft_bzero(env[j], ft_strlen(env[j]));
+	env[j] = ft_strjoinfree(env[j], str);
+	return (env);
 }
 
-int				parseenv(char *value, char *name, int overwrite)
+static int			parseenv_env(char ***env, char *value, char *name, int ov)
 {
 	int		j;
 	char	**tmp;
 
 	j = 0;
-	tmp = g_env;
-	while (tmp[j])
-	{
-		if (ft_strcmpcuts1(tmp[j], name, '=') == 0)
-		{
-			if (overwrite != 0)
-				g_env = fillenv(name, value, j);
-			return (0);
-		}
-		j++;
-	}
+	tmp = *env;
+    if (tmp)
+    {
+        while (tmp[j])
+        {
+            if (ft_strcmpcuts1(tmp[j], name, '=') == 0)
+            {
+                if (ov != 0)
+                    *env = fillenv_env(*env, name, value, j);
+                return (0);
+            }
+            j++;
+        }
+    }
+    else
+        return (0);
 	return (1);
 }
 
-static	int		checksyntax(const char *str)
+int			checksyntax_env(const char *str)
 {
 	int		i;
 
 	i = 0;
-	while (str[i] != ' ' && str[i] != '=' && str[i])
+	while (str[i] && str[i] != '=' && str[i] != ' ')
 		i++;
 	if (str[i] == '=')
 	{
@@ -82,20 +87,14 @@ static	int		checksyntax(const char *str)
 		return (1);
 }
 
-void			ft_setenv(char *str, int m)
+int					ft_setenv_env(char ***env, char *str)
 {
 	int		in[2];
 	char	*name;
 	char	*value;
 
-	if (m == 0)
-		ft_strcut(str, 7);
-	if ((in[0] = checksyntax(str)) == 1)
-	{
-		ft_erroru("setenv: ",
-			"bad syntax", "setenv [name]=[value] [overwrite : 0/1]");
-		return ;
-	}
+	if ((in[0] = checksyntax_env(str)) == 1)
+		return (1);
 	if (in[0] == -1)
 		in[1] = 0;
 	else
@@ -104,9 +103,17 @@ void			ft_setenv(char *str, int m)
 	value = ft_cut(str, '=');
 	if (in[0] != -1)
 		value = ft_strgetchartc(str, ' ');
-	if (parseenv(value, name, in[1]))
-		g_env = addenv(name, value);
+	if (parseenv_env(env, value, name, 1))
+        *env = addenv_env(*env, name, value);
+	else
+    {
+        free(name);
+        if (in[0] != -1)
+            free(value);
+        return (0);
+    }
 	free(name);
 	if (in[0] != -1)
 		free(value);
+	return (0);
 }
