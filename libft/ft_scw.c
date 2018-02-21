@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_cot.c                                        :+:      :+:    :+:   */
+/*   ft_scw.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 13:17:27 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/21 20:05:36 by asandolo         ###   ########.fr       */
+/*   Created: 2018/02/21 23:03:35 by asandolo          #+#    #+#             */
+/*   Updated: 2018/02/21 23:05:34 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/21sh.h"
+#include "includes/libft.h"
 
-int		check_cot(const char *str)
+size_t	ft_scountwords(const char *str, char c)
 {
-    int i;
-    int ck;
-    int ck2;
-    int ret;
+    size_t  word;
+    int     i;
+    char    x;
 
     i = 0;
-    ck = 0;
-    ck2 = 0;
+    word = 0;
+    if (!str)
+        return (0);
     while (str[i])
     {
-        if (str[i] == '"')
-            ck++;
-        if (str[i] == 39)
-            ck2++;
+        if (str[i] == '"' || str[i] == 39)
+        {
+            x = str[i];
+            i++;
+            while (str[i] != x)
+                i++;
+        }
+        else  if (str[i] == c && str[i + 1] != c)
+            word++;
         i++;
     }
-    ret = (((ck % 2 ) == 0)) ? 0 : 1;
-    ret = (((ck2 % 2 ) == 0)) ? 0 : 1;
-    return (ret);
+    if (str[0] != '\0')
+        word++;
+    return (word);
 }

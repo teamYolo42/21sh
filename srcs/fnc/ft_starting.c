@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 18:42:40 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/20 12:03:01 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/21 12:10:21 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ static  void    ft_start(void)
         free(pwd);
     if (oldpwd)
         free(oldpwd);
+}
+
+static  void ddfree(char *s1, char *s2)
+{
+    free(s1);
+    free(s2);
 }
 
 void	ft_starting(void)
@@ -56,7 +62,6 @@ void	ft_starting(void)
         shell = ft_strjoinc(shell, '/');
         shell = ft_strjoinfrees1(shell, "./21sh");
         g_env = fillenv("SHELL", shell, find_env_var(g_env, "SHELL"));
-        free(shell);
-        free(c);
+        ddfree(shell, c);
     }
 }

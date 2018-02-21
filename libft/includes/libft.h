@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:27:54 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/20 15:49:15 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/21 23:05:50 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,7 @@ void                ft_cutspace(char *str);
 int                 ft_ispace(char c);
 char                *ft_joinsplitc(char **split, int i, char c);
 char                *ft_joinsplit(char **split, int i);
+char                **ft_specialsplit(char *str);
+size_t              ft_scountwords(const char *str, char c);
 
 #endif

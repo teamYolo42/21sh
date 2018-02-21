@@ -34,4 +34,7 @@
 # define _SW "\033[47m"
 # define _BB "\033[94m"
 
+# define _HIGHLIGHT "\033[7m"
+# define _END_MODE "\033[0m"
+
 #endif

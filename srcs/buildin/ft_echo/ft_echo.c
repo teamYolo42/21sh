@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 14:09:54 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/20 13:19:09 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/21 23:02:21 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ static int		echo_par(char *str, int i, char c)
 	i++;
 	while (str[i] && str[i] != c)
 	{
-		ft_putchar(str[i]);
+        if (str[i] == 92)
+            ft_92(str, i);
+        else
+		    ft_putchar(str[i]);
 		i++;
 	}
 	return (i);
@@ -81,18 +84,87 @@ static void		ft_echo_norm(char ***env, char *str)
 
 void			ft_echo(char ***env, char *str)
 {
-	ft_strcut(str, 4);
-	if (!ft_ispace(str[0]))
-	{
-		ft_error("Error: ", "command not found");
-		return ;
-	}
-	ft_cutspace(str);
-	if (check_cot(str))
-	{
-		ft_error("echo: ", "Number of quote");
-		return ;
-	}
-	ft_echo_norm(env, str);
-	ft_putchar('\n');
+    t_echo v;
+    char optecho[1];
+
+    if (check_cot(str))
+    {
+        ft_error("echo: ", "Number of quote");
+        return;
+    }
+    v.av = ft_specialsplit(str);
+    if (!ft_checkcmd(v.av[0], "echo"))
+    {
+        freer(v.av);
+        return ;
+    }
+
+    v.ac = (int) ft_scountwords(str, ' ');
+    v.i = get_options_echo(optecho, v.av, v.ac);
+    v.s = ft_joinsplitc(v.av, v.i, ' ');
+    if (v.i == v.ac)
+        ft_erroru("echo: ", "bas syntax", "echo [-n] [string...]");
+    else
+        ft_echo_norm(env, v.s);
+    if (!OPT_ECHO_N)
+        ft_putchar('\n');
+    freer(v.av);
+    free(v.s);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

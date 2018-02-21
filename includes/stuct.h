@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 13:23:16 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/20 18:23:01 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/21 12:04:25 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,13 @@ typedef	struct	s_setenv
     int         ac;
 }				t_setenv;
 
+
+typedef struct  s_echo
+{
+    char **av;
+    int ac;
+    int i;
+    char *s;
+}               t_echo;
 
 #endif

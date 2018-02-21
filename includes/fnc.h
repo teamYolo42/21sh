@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 11:09:22 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/20 13:19:09 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/21 12:34:57 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ void    ft_put_merge_env(char **env, char **split);
 int		check_cot(const char *str);
 
 int		get_options_setenv(char *optsetenv, char **argv, int argc);
+int		ft_92(const char *str, int k);
+int		get_options_echo(char *optecho, char **argv, int argc);
 
 #endif
