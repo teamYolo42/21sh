@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 11:09:22 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/21 12:34:57 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/22 14:22:46 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,8 @@ int		check_cot(const char *str);
 int		get_options_setenv(char *optsetenv, char **argv, int argc);
 int		ft_92(const char *str, int k);
 int		get_options_echo(char *optecho, char **argv, int argc);
+int		parseenv_env(char ***env, char *value, char *name, int ov);
+char	**addenv_env(char **env, char *name, char *value);
+void    cd_change_env(char ***env, char *pwd, char *oldpwd, int m);
 
 #endif

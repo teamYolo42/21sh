@@ -16,6 +16,7 @@
 # define OPT_ENV_I (optenv[0])
 # define OPT_SETENV_1 (optsetenv[0])
 # define OPT_ECHO_N (optecho[0])
-
+# define OPT_CD_L (optcd[0])
+# define OPT_CD_P (optcd[1])
 
 #endif

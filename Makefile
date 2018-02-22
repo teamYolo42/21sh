@@ -6,7 +6,7 @@
 #    By: pcartau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 09:02:32 by pcartau           #+#    #+#              #
-#    Updated: 2018/02/21 12:04:10 by asandolo         ###   ########.fr        #
+#    Updated: 2018/02/22 14:07:21 by asandolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ SRC = srcs/main.c srcs/process/ft_21sh.c srcs/buildin/ft_env/ft_env.c \
 
 
 OBJ = $(SRC:.c=.o)
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 
 .PHONY: clean fclean re re-bis
@@ -71,7 +71,7 @@ clean:
 	rm -f $(OBJ)
 
 fclean : clean
-	make -C libft/ clean
+	make -C libft/ fclean
 	rm -f $(NAME)
 
 re: fclean all

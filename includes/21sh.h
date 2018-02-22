@@ -25,6 +25,7 @@
 # include <sys/stat.h>
 # include <signal.h>
 # include <limits.h>
+# include <stdio.h>
 
 
 int		g_pid;

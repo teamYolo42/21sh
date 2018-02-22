@@ -6,13 +6,13 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 19:15:25 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/16 17:05:43 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/22 14:21:55 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/21sh.h"
 
-static	char		**addenv_env(char **env, char *name, char *value)
+char		**addenv_env(char **env, char *name, char *value)
 {
 	char	*str;
 
@@ -36,7 +36,7 @@ static char			**fillenv_env(char **env, char *name, char *value, int j)
 	return (env);
 }
 
-static int			parseenv_env(char ***env, char *value, char *name, int ov)
+int			parseenv_env(char ***env, char *value, char *name, int ov)
 {
 	int		j;
 	char	**tmp;

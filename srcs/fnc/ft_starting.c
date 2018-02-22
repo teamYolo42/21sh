@@ -16,14 +16,14 @@ static  void    ft_start(void)
 {
     char *pwd;
     char *oldpwd;
-    char buf[2048];
+    char buf[PATH_MAX];
 
     pwd = ft_getenv(&g_env, "PWD");
     oldpwd = ft_getenv(&g_env, "OLDPWD");
     if (!pwd)
-        g_env = addenv("PWD", getcwd(buf, 2048));
+        g_env = addenv("PWD", getcwd(buf, PATH_MAX));
     if (!oldpwd)
-        g_env = addenv("OLDPWD", getcwd(buf, 2048));
+        g_env = addenv("OLDPWD", getcwd(buf, PATH_MAX));
     if (pwd)
         free(pwd);
     if (oldpwd)

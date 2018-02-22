@@ -6,11 +6,21 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 11:51:06 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/12 13:11:05 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/22 16:12:10 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/21sh.h"
+
+static void ft_cd_point(char ***env)
+{
+	t_vatcdt v;
+	char buf[PATH_MAX];
+
+	v.oldpwd = ft_getenv(env, "OLDPWD");
+	v.pwd   = getcwd(buf, PATH_MAX);
+	cd_change_env(env, v.pwd, v.oldpwd, 1);
+}
 
 static void		ft_cd2(char ***env, char *str)
 {
@@ -22,7 +32,7 @@ static void		ft_cd2(char ***env, char *str)
 	else if (ft_strcmp(str, "-") == 0)
 		ft_cd_tiret(env);
 	else if (ft_strcmp(str, ".") == 0)
-		return ;
+		ft_cd_point(env);
 	else if (ft_strcmp(str, "/") == 0)
 		ft_cd_slash(env);
 	else
