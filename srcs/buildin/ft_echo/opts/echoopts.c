@@ -11,7 +11,7 @@ static int			add_options(char *optecho, const char *new)
             OPT_ECHO_N = 1;
         else
         {
-            ft_erroru("env ", "Illegal argument", " env [-i] [key=var..] binany");
+            ft_erroru("echo ", "Illegal argument", " echo [-n] [String...]");
             return (-1);
         }
         i++;

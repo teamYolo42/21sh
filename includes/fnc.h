@@ -65,5 +65,6 @@ int		get_options_echo(char *optecho, char **argv, int argc);
 int		parseenv_env(char ***env, char *value, char *name, int ov);
 char	**addenv_env(char **env, char *name, char *value);
 void    cd_change_env(char ***env, char *pwd, char *oldpwd, int m);
+int		get_options_cd(char *optcd, char **argv, int argc);
 
 #endif

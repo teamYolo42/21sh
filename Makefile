@@ -43,7 +43,7 @@ SRC = srcs/main.c srcs/process/ft_21sh.c srcs/buildin/ft_env/ft_env.c \
       srcs/fnc/ft_prompt.c srcs/fnc/ft_starting.c srcs/buildin/ft_env/opts/envopts.c \
       srcs/fnc/ft_checkcmd.c srcs/buildin/ft_env/ft_env2.c srcs/fnc/check_cot.c \
       srcs/buildin/ft_setenv/opts/setenvopts.c srcs/buildin/ft_setenv/ft_setenv2.c \
-      srcs/buildin/ft_echo/opts/echoopts.c
+      srcs/buildin/ft_echo/opts/echoopts.c srcs/buildin/ft_cd/opts/cdopts.c
 
 
 OBJ = $(SRC:.c=.o)
