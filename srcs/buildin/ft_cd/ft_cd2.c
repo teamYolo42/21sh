@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 11:51:06 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/23 16:14:16 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/24 13:52:19 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void		ft_cd_nothing(char ***env)
         ft_error("cd: ","HOME PATH neot set");
         return;
     }
-	cd_change_env(env, v.home, v.pwd, 0);
 	chdir(v.home);
+	cd_change_env(env, v.home, v.pwd, 0);
 }
 
 void		ft_cd_norm(char ***env, char **str, int m)

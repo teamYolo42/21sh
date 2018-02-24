@@ -6,7 +6,7 @@
 #    By: pcartau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 09:02:32 by pcartau           #+#    #+#              #
-#    Updated: 2018/02/22 14:07:21 by asandolo         ###   ########.fr        #
+#    Updated: 2018/02/24 14:01:44 by asandolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRC = srcs/main.c srcs/process/ft_21sh.c srcs/buildin/ft_env/ft_env.c \
       srcs/fnc/ft_prompt.c srcs/fnc/ft_starting.c srcs/buildin/ft_env/opts/envopts.c \
       srcs/fnc/ft_checkcmd.c srcs/buildin/ft_env/ft_env2.c srcs/fnc/check_cot.c \
       srcs/buildin/ft_setenv/opts/setenvopts.c srcs/buildin/ft_setenv/ft_setenv2.c \
-      srcs/buildin/ft_echo/opts/echoopts.c srcs/buildin/ft_cd/opts/cdopts.c
+      srcs/buildin/ft_echo/opts/echoopts.c srcs/buildin/ft_cd/opts/cdopts.c \
+      srcs/buildin/ft_cd/fnccd2.c
 
 
 OBJ = $(SRC:.c=.o)

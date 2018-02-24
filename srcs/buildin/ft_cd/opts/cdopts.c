@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 13:04:31 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/23 13:04:52 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/24 12:35:40 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static int			add_options(char *optcd, const char *new)
 	{
 		if (new[i] == 'P')
 			OPT_CD_P = 1;
-		if (new[i] == 'L')
+		else if (new[i] == 'L')
 			OPT_CD_L = 1;
 		else
 		{
-			ft_erroru("echo ", "Illegal argument", " echo [-n] [String...]");
+			ft_erroru("cd: ", "Illegal argument ", " cd [-P|-L] [args...]");
 			return (-1);
 		}
 		i++;

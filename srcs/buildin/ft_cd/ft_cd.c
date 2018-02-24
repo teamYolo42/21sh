@@ -6,44 +6,44 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 11:51:06 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/23 16:33:27 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/24 12:34:35 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/21sh.h"
 
-//static void ft_cd_point(char ***env)
-//{
-//	t_vatcdt v;
-//	char buf[PATH_MAX];
-//
-//	v.oldpwd = ft_getenv(env, "OLDPWD");
-//	v.pwd   = getcwd(buf, PATH_MAX);
-//	cd_change_env(env, v.pwd, v.oldpwd, 1);
-//}
-//
-//static void		ft_cd2(char ***env, char *str)
-//{
-//	t_vcdn v;
-//
-//	ft_delspace(str);
-//	if (ft_strcmp(str, "") == 0)
-//		ft_cd_nothing(env);
-//	else if (ft_strcmp(str, "-") == 0)
-//		ft_cd_tiret(env);
-//	else if (ft_strcmp(str, ".") == 0)
-//		ft_cd_point(env);
-//	else if (ft_strcmp(str, "/") == 0)
-//		ft_cd_slash(env);
-//	else
-//	{
-//		v.m = (str[0] == '/') ? 1 : 0;
-//		v.split = ft_strsplit(str, '/');
-//		if (testcd(v.split, v.m, getcwd(v.buf, 2048)))
-//			ft_cd_norm(env, v.split, v.m);
-//		freer(v.split);
-//	}
-//}
+static void ft_cd_point(char ***env)
+{
+	t_vatcdt v;
+	char buf[PATH_MAX];
+
+	v.oldpwd = ft_getenv(env, "OLDPWD");
+	v.pwd   = getcwd(buf, PATH_MAX);
+	cd_change_env(env, v.pwd, v.oldpwd, 1);
+}
+
+static void		ft_cd2(char ***env, char *str)
+{
+	t_vcdn v;
+
+	ft_delspace(str);
+	if (ft_strcmp(str, "") == 0)
+		ft_cd_nothing(env);
+	else if (ft_strcmp(str, "-") == 0)
+		ft_cd_tiret(env);
+	else if (ft_strcmp(str, ".") == 0)
+		ft_cd_point(env);
+	else if (ft_strcmp(str, "/") == 0)
+		ft_cd_slash(env);
+	else
+	{
+		v.m = (str[0] == '/') ? 1 : 0;
+		v.split = ft_strsplit(str, '/');
+		if (testcd(v.split, v.m, getcwd(v.buf, 2048)))
+			ft_cd_norm(env, v.split, v.m);
+		freer(v.split);
+	}
+}
 //
 //void			ft_cd(char ***env, char *str)
 //{
@@ -65,19 +65,32 @@
 
 void			ft_cd(char ***env, char *str)
 {
-	char 	**av;
-	char 	*s;
-	int 	ac;
-	int		i;
-	char 	optcd[2];
+	char **av;
+	char *s;
+	int ac;
+	int i;
+	char optcd[2];
 
 	av = ft_strsplit(str, ' ');
-	ac = (int)ft_countwords(str, ' ');
+	ac = (int) ft_countwords(str, ' ');
 	i = get_options_cd(optcd, av, ac);
+	if (i == -1)
+	{
+		freer(av);
+		return;
+	}
 	if (i == ac)
+	{
 		ft_cd_nothing(env);
+		return ;
+	}
 	s = ft_joinsplitc(av, i, ' ');
-	ft_putendl(s);
+	if(OPT_CD_P)
+		ft_cd2(env, s);
+	else
+	{
+		cd_parse_path(env, s);
+	}
 	if (s)
 		free(s);
 	freer(av);

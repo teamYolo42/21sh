@@ -132,5 +132,7 @@ char                *ft_joinsplitc(char **split, int i, char c);
 char                *ft_joinsplit(char **split, int i);
 char                **ft_specialsplit(char *str);
 size_t              ft_scountwords(const char *str, char c);
+char				**ft_removefromtab(char **arr, int rem);
+void				ft_puttabd(char **tab);
 
 #endif

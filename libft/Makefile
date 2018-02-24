@@ -39,7 +39,7 @@ SRC = ft_atoi.c ft_bzero.c ft_memcpy.c ft_memset.c \
 	  ft_putcolormultistr_err.c ft_strgetchartc.c ft_strcmpcuts1.c \
 	  epur_str.c ft_strgetstatic.c ft_replacechar.c ft_strdupdup.c \
 	  ft_strjoinc.c ft_puttab.c ft_cutspace.c ft_joinsplit.c \
-	  ft_specialsplt.c ft_scw.c
+	  ft_specialsplt.c ft_scw.c ft_removefromtab.c
 
 OBJ = $(SRC:.c=.o)
 

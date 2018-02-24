@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 18:32:21 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/20 11:36:49 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/24 18:16:03 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,19 @@ void    ft_puttab(char **tab)
 
     i = 0;
     while (tab[i])
-    {
-        ft_putendl(tab[i]);
-        i++;
-    }
+        ft_putendl(tab[i++]);
+}
+
+void    ft_puttabd(char **tab)
+{
+	int		i;
+
+	i = 0;
+	while (tab[i])
+	{
+		ft_putnbr(i);
+		ft_putchar(' ');
+		ft_putendl(tab[i]);
+		i++;
+	}
 }
