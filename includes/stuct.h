@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 13:23:16 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/21 12:04:25 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/27 22:08:34 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,14 @@ typedef struct  s_echo
     char *s;
 }               t_echo;
 
+typedef struct s_cdd
+{
+	char **av;
+	char *s;
+	char *s2;
+	int ac;
+	int i;
+	char *pwd;
+	int m;
+}			t_cdd;
 #endif

@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:27:54 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/21 23:05:50 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/27 16:51:31 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,6 @@ char                **ft_specialsplit(char *str);
 size_t              ft_scountwords(const char *str, char c);
 char				**ft_removefromtab(char **arr, int rem);
 void				ft_puttabd(char **tab);
+void				freer(char **str);
 
 #endif

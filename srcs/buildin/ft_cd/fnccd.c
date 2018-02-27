@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 12:23:58 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/24 13:35:44 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/27 20:58:59 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,20 @@ int			testcd(char **path, int m, char *save)
 	}
 	chdir(save);
 	return (1);
+}
+
+int	testcd2(char *str)
+{
+	DIR *d;
+
+	if ((d = opendir((str))))
+	{
+		closedir(d);
+		return (1);
+	}
+	else
+	{
+		test(str);
+		return (0);
+	}
 }

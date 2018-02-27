@@ -36,7 +36,6 @@ char	*ft_getenv_2(char **env, char *str);
 void	ft_exit(char *str);
 void	ft_delspace(char *str);
 
-void	freer(char **str);
 int		testcd(char **path, int m, char *save);
 
 void	ft_cd_tiret(char ***env);
@@ -68,5 +67,6 @@ void    cd_change_env(char ***env, char *pwd, char *oldpwd, int m);
 int		get_options_cd(char *optcd, char **argv, int argc);
 char	*cd_parse_path(char ***env, char *npath);
 char	**ft_removefromtab2(char **arr, int rem);
+int		testcd2(char *str);
 
 #endif

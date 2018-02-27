@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 11:51:06 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/27 15:30:47 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/27 22:17:08 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,76 +44,57 @@ static void		ft_cd2(char ***env, char *str)
 		freer(v.split);
 	}
 }
-//
-//void			ft_cd(char ***env, char *str)
-//{
-//	ft_strcut(str, 2);
-//	if (!ft_ispace(str[0]))
-//	{
-//		if (ft_strcmp(str, "") == 0)
-//			ft_cd_nothing(env);
-//		else
-//		{
-//			ft_error("Error: ", "command not found");
-//			return ;
-//		}
-//	}
-//	else
-//		ft_cd2(env, str);
-//}
 
+void			ft_cd_nor(char ***env, t_cdd v, const char *optcd)
+{
+	if (OPT_CD_P)
+		ft_cd2(env, v.s);
+	else
+	{
+		if (ft_strcmp(v.s, "-") == 0)
+			ft_cd_tiret(env);
+		else if (ft_strcmp(v.s, ".") == 0)
+			ft_cd_point(env);
+		else if (ft_strcmp(v.s, "/") == 0)
+			ft_cd_slash(env);
+		else
+		{
+			if (testcd2(v.s))
+			{
+				v.pwd = ft_getenv(env, "PWD");
+				v.s2 = cd_parse_path(env, v.s);
+				chdir(v.s2);
+				cd_change_env(env, v.s2, v.pwd, 0);
+			}
+
+		}
+	}
+}
 
 void			ft_cd(char ***env, char *str)
 {
-	char **av;
-	char *s;
-	char *s2;
-	int ac;
-	int i;
-	char optcd[2];
+	t_cdd	v;
+	char	optcd[2];
 
-	av = ft_strsplit(str, ' ');
-	ac = (int) ft_countwords(str, ' ');
-	i = get_options_cd(optcd, av, ac);
-	if (i == -1)
+	v.av = ft_strsplit(str, ' ');
+	v.ac = (int) ft_countwords(str, ' ');
+	v.i = get_options_cd(optcd, v.av, v.ac);
+	if (v.i == -1)
 	{
-		freer(av);
+		free(v.pwd);
+		freer(v.av);
 		return;
 	}
-	if (i == ac)
+	if (v.i == v.ac)
 	{
+		freer(v.av);
+		free(v.pwd);
 		ft_cd_nothing(env);
 		return ;
 	}
-	s = ft_joinsplitc(av, i, ' ');
-	if(OPT_CD_P)
-		ft_cd2(env, s);
-	else
-	{
-		s2 = cd_parse_path(env, s);
-		free(s2);
-	}
-	if (s)
-		free(s);
-	freer(av);
+	v.s = ft_joinsplitc(v.av, v.i, ' ');
+	ft_cd_nor(env, v, optcd);
+	if (v.s)
+		free(v.s);;
+	freer(v.av);
 }
-
-//void			ft_cd(char ***env, char *str)
-//{
-//	char buf[PATH_MAX];
-//	char buf2[PATH_MAX];
-//
-//	getcwd(buf2, PATH_MAX);
-//	ft_putendl(buf2);
-//	ft_strcut(str, 2);
-//	ft_cutspace(str);
-//	chdir(str);
-//	getcwd(buf, PATH_MAX);
-//	ft_putendl(buf);
-//	ft_putendl(str);
-//	if(parseenv_env(env, str, "PWD", 1))
-//		*env = addenv_env(*env, "PWD", str);
-//	if(parseenv_env(env, buf2, "OLDPWD", 1))
-//		*env = addenv_env(*env, "OLDPWD", buf2);
-//
-//}

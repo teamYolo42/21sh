@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 13:37:09 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/27 15:39:57 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/27 21:58:28 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static char **ft_removedots(char **split)
 	i = 0;
 	while (split[i])
 	{
-		if(ft_strcmp(split[i], ".") == 0)
+		if(split[i] && ft_strcmp(split[i], ".") == 0)
 		{
 			split = ft_removefromtab(split, i);
 			i = 0;
 		}
-		if(ft_strcmp(split[i], "..") == 0)
+		if(split[i] && ft_strcmp(split[i], "..") == 0)
 		{
 			split = ft_removefromtab2(split, i);
 			i = 0;
@@ -42,10 +42,14 @@ char	*cd_parse_path(char ***env, char *npath)
 	char **nsplit;
 	char *nnpath;
 	char *s;
+	char *ret;
 
 	path = ft_getenv(env, "PWD");
 	if (npath[0] == '/')
-		nnpath = path;
+	{
+		nnpath = ft_strdup(npath);
+		free(path);
+	}
 	else
 	{
 		nnpath = ft_strjoincfree(path, '/');
@@ -54,10 +58,8 @@ char	*cd_parse_path(char ***env, char *npath)
 	split = ft_strsplit(nnpath, '/');
 	free(nnpath);
 	nsplit = ft_removedots(split);
-	freer(split);
 	s = ft_joinsplitc(nsplit, 0, '/');
 	freer(nsplit);
-	s = ft_strjoinfrees2("/", s);
-	ft_putendl(s);
-	return (s);
+	ret = ft_strjoinfrees2("/", s);
+	return (ret);
 }

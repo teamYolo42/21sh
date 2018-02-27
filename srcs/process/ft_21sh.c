@@ -12,19 +12,6 @@
 
 #include "../../includes/21sh.h"
 
-void				freer(char **str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
 static	void		go2(char ***env, char ***cenv,  char *buf)
 {
 	if (ft_strnstr(buf, "exit", 4))

@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 13:21:01 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/27 15:35:05 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:12:41 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static char		**copy_tab_w(int rem, char **new_arr, char **arr, int len)
 		}
 		i++;
 	}
+	freer(arr);
 	new_arr[j] = 0;
 	return (new_arr);
 }
@@ -84,7 +85,8 @@ static char		**copy_tab_w2(int rem, char **new_arr, char **arr, int len)
 		}
 		i++;
 	}
-	new_arr[j] = 0;
+	freer(arr);
+	new_arr[j] = NULL;
 	return (new_arr);
 }
 
