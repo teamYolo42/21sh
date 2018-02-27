@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 13:21:01 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/24 18:47:01 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/27 15:35:05 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char		**ft_removefromtab2(char **arr, int rem)
 	if (arr)
 	{
 		len = ft_tabl(arr);
-		new_arr = (char**)malloc(sizeof(char*) * (len));
+		new_arr = (char**)malloc(sizeof(char*) * (len + 1));
 		new_arr = copy_tab_w2(rem, new_arr, arr, len);
 	}
 	return (new_arr);

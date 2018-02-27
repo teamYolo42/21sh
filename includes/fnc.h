@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 11:09:22 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/24 13:49:38 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/27 14:36:42 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		parseenv_env(char ***env, char *value, char *name, int ov);
 char	**addenv_env(char **env, char *name, char *value);
 void    cd_change_env(char ***env, char *pwd, char *oldpwd, int m);
 int		get_options_cd(char *optcd, char **argv, int argc);
-void	cd_parse_path(char ***env, char *npath);
+char	*cd_parse_path(char ***env, char *npath);
 char	**ft_removefromtab2(char **arr, int rem);
 
 #endif

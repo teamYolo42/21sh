@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 11:51:06 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/24 12:34:35 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/27 15:30:47 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void			ft_cd(char ***env, char *str)
 {
 	char **av;
 	char *s;
+	char *s2;
 	int ac;
 	int i;
 	char optcd[2];
@@ -89,7 +90,8 @@ void			ft_cd(char ***env, char *str)
 		ft_cd2(env, s);
 	else
 	{
-		cd_parse_path(env, s);
+		s2 = cd_parse_path(env, s);
+		free(s2);
 	}
 	if (s)
 		free(s);

@@ -6,44 +6,43 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 13:37:09 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/24 18:41:21 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/27 15:39:57 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/21sh.h"
 
 
-char **ft_jspencoe(char **split, int j)
+static char **ft_removedots(char **split)
 {
 	int i;
-	char **nsplit;
 
 	i = 0;
-	ft_putnbr(j);
-	ft_putendl("");
 	while (split[i])
 	{
+		if(ft_strcmp(split[i], ".") == 0)
+		{
+			split = ft_removefromtab(split, i);
+			i = 0;
+		}
 		if(ft_strcmp(split[i], "..") == 0)
 		{
-			nsplit = ft_removefromtab2(split, i);
-			ft_puttabd(nsplit);
-			ft_putendl("");
-			ft_jspencoe(nsplit, j + 1);
+			split = ft_removefromtab2(split, i);
+			i = 0;
 		}
 		i++;
 	}
 	return (split);
 }
 
-void	cd_parse_path(char ***env, char *npath)
+char	*cd_parse_path(char ***env, char *npath)
 {
 	char *path;
 	char **split;
 	char **nsplit;
 	char *nnpath;
-	int	i;
+	char *s;
 
-	i = 0;
 	path = ft_getenv(env, "PWD");
 	if (npath[0] == '/')
 		nnpath = path;
@@ -53,7 +52,12 @@ void	cd_parse_path(char ***env, char *npath)
 		nnpath = ft_strjoinfrees1(nnpath, npath);
 	}
 	split = ft_strsplit(nnpath, '/');
-	nsplit = ft_jspencoe(split, 0);
-	ft_putendl("FINAL");
-	ft_puttabd(nsplit);
+	free(nnpath);
+	nsplit = ft_removedots(split);
+	freer(split);
+	s = ft_joinsplitc(nsplit, 0, '/');
+	freer(nsplit);
+	s = ft_strjoinfrees2("/", s);
+	ft_putendl(s);
+	return (s);
 }
