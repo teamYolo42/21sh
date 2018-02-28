@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 13:21:01 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/27 17:12:41 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:36:31 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static char		**copy_tab_w(int rem, char **new_arr, char **arr, int len)
 	{
 		if (i != rem)
 		{
-			new_arr[j] = (char*)malloc(sizeof(char) * (ft_strlen(arr[i]) + 1));
+			if (!(new_arr[j] = (char*)malloc(sizeof(char) * (ft_strlen(arr[i]) + 1))))
+				return (NULL);
 			if (new_arr[j])
 			{
 				ft_strcpy(new_arr[j], arr[i]);
@@ -76,7 +77,8 @@ static char		**copy_tab_w2(int rem, char **new_arr, char **arr, int len)
 	{
 		if (i != rem && i != rem - 1)
 		{
-			new_arr[j] = (char*)malloc(sizeof(char) * (ft_strlen(arr[i]) + 1));
+			if (!(new_arr[j] = (char*)malloc(sizeof(char) * (ft_strlen(arr[i]) + 1))))
+				return (NULL);
 			if (new_arr[j])
 			{
 				ft_strcpy(new_arr[j], arr[i]);

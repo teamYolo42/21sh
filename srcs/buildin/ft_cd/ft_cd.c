@@ -88,7 +88,6 @@ void			ft_cd(char ***env, char *str)
 	if (v.i == v.ac)
 	{
 		freer(v.av);
-		free(v.pwd);
 		ft_cd_nothing(env);
 		return ;
 	}

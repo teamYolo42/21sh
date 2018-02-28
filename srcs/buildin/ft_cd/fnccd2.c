@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 13:37:09 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/27 21:58:28 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:40:01 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char **ft_removedots(char **split)
 	int i;
 
 	i = 0;
-	while (split[i])
+	while (split && split[i])
 	{
 		if(split[i] && ft_strcmp(split[i], ".") == 0)
 		{
