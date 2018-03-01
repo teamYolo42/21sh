@@ -12,19 +12,6 @@
 
 #include "../../includes/21sh.h"
 
-int		ft_tablen(char **tab)
-{
-	int i;
-
-	i = 0;
-	if (tab)
-	{
-		while (tab[i])
-			i++;
-	}
-	return (i);
-}
-
 static	void	*removevar(char **ptr, char *str)
 {
 	char	**newptr;

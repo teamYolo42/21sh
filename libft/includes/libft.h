@@ -135,5 +135,6 @@ size_t              ft_scountwords(const char *str, char c);
 char				**ft_removefromtab(char **arr, int rem);
 void				ft_puttabd(char **tab);
 void				freer(char **str);
+int					ft_tablen(char **tab);
 
 #endif

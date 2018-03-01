@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 11:51:06 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/27 22:17:08 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/03/01 18:48:31 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,17 @@ void			ft_cd_nor(char ***env, t_cdd v, const char *optcd)
 			{
 				v.pwd = ft_getenv(env, "PWD");
 				v.s2 = cd_parse_path(env, v.s);
-				chdir(v.s2);
-				cd_change_env(env, v.s2, v.pwd, 0);
+				if (v.s2 != NULL)
+				{
+					chdir(v.s2);
+					cd_change_env(env, v.s2, v.pwd, 0);
+				}
+				else
+				{
+					free(v.pwd);
+					ft_cd_slash(env);
+				}
+
 			}
 
 		}

@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 11:09:22 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/27 14:36:42 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/03/01 15:26:57 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int		ft_setenv_env(char ***env, char *str);
 void	go(char ***env, char ***cenv,  char *buf, int m);
 
 int		get_options_env(char *optenv, char **argv, int argc);
-int		ft_tablen(char **tab);
 int		checksyntax_env(const char *str);
 int     ft_checkcmd(char *cmd, char *str);
 void    ft_put_merge_env(char **env, char **split);

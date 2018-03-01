@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 13:37:09 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/28 17:40:01 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/03/01 18:53:29 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,29 @@ static char **ft_removedots(char **split)
 	return (split);
 }
 
+static int testcd3(char **s)
+{
+	int len;
+	int i;
+	int c;
+
+	i = 0;
+	c = 0;
+	len = ft_tablen(s);
+	while (s[i])
+	{
+		if (ft_strcmp(s[i], ".") == 0)
+			c++;
+		if (ft_strcmp(s[i], "..") == 0)
+			c += 2;
+		i++;
+	}
+	if ((len - c) < 0)
+		return (0);
+	else
+		return (1);
+}
+
 char	*cd_parse_path(char ***env, char *npath)
 {
 	char *path;
@@ -57,9 +80,17 @@ char	*cd_parse_path(char ***env, char *npath)
 	}
 	split = ft_strsplit(nnpath, '/');
 	free(nnpath);
-	nsplit = ft_removedots(split);
-	s = ft_joinsplitc(nsplit, 0, '/');
-	freer(nsplit);
-	ret = ft_strjoinfrees2("/", s);
-	return (ret);
+	if (testcd3(split))
+	{
+		nsplit = ft_removedots(split);
+		s = ft_joinsplitc(nsplit, 0, '/');
+		freer(nsplit);
+		ret = ft_strjoinfrees2("/", s);
+		return (ret);
+	}
+	else
+	{
+		freer(split);
+		return(NULL);
+	}
 }
