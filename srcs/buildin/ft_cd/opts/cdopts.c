@@ -38,7 +38,7 @@ int					get_options_cd(char *optcd, char **argv, int argc)
 	int		i;
 
 	i = 1;
-	ft_bzero(optcd, 1);
+	ft_bzero(optcd, 2);
 	while (i < argc && argv[i][0] == '-' && argv[i][1] != '\0')
 	{
 		if (add_options(optcd, argv[i]) == -1)
