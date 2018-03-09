@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 11:51:06 by asandolo          #+#    #+#             */
-/*   Updated: 2018/03/04 14:28:03 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/03/09 14:26:41 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,13 @@ void			ft_cd(char ***env, char *str)
 	t_cdd	v;
 	char	optcd[2];
 
+
 	v.av = ft_strsplit(str, ' ');
+	if(!ft_checkcmd("cd", v.av[0]))
+	{
+		freer(v.av);
+		return;
+	}
 	v.ac = (int) ft_countwords(str, ' ');
 	v.i = get_options_cd(optcd, v.av, v.ac);
 	if (v.i == -1)

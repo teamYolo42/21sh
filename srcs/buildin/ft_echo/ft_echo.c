@@ -6,7 +6,7 @@
 /*   By: asandolo <asandolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 14:09:54 by asandolo          #+#    #+#             */
-/*   Updated: 2018/02/21 23:02:21 by asandolo         ###   ########.fr       */
+/*   Updated: 2018/03/09 14:15:00 by asandolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,13 @@ void			ft_echo(char ***env, char *str)
         freer(v.av);
         return ;
     }
-
     v.ac = (int) ft_scountwords(str, ' ');
-    v.i = get_options_echo(optecho, v.av, v.ac);
+	v.i = get_options_echo(optecho, v.av, v.ac);
+	if (v.i == -1)
+	{
+		freer(v.av);
+		return;
+	}
     v.s = ft_joinsplitc(v.av, v.i, ' ');
     if (v.i == v.ac)
         ft_erroru("echo: ", "bas syntax", "echo [-n] [string...]");

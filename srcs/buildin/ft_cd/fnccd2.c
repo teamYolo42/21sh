@@ -52,7 +52,7 @@ static int testcd3(char **s)
 			c += 2;
 		i++;
 	}
-	if ((len - c) < 0)
+	if ((len - c) <= 0)
 		return (0);
 	else
 		return (1);
