@@ -96,7 +96,6 @@ void			ft_cd(char ***env, char *str)
 	v.i = get_options_cd(optcd, v.av, v.ac);
 	if (v.i == -1)
 	{
-		free(v.pwd);
 		freer(v.av);
 		return;
 	}
